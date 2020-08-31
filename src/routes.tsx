@@ -2,6 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { routeInterface } from "./interfaces";
 import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
+import Register from "./pages/Register";
 import Home from "./pages/Home";
 
 interface IRenderRoutes {
@@ -10,6 +12,18 @@ interface IRenderRoutes {
 
 const ROUTES: routeInterface[] = [
   { path: "/", key: "ROOT", exact: true, component: Login },
+  {
+    path: "/forgot-password",
+    key: "FORGOT_PASSWORD",
+    exact: true,
+    component: ForgotPassword,
+  },
+  {
+    path: "/register",
+    key: "REGISTER",
+    exact: true,
+    component: Register,
+  },
   { path: "/home", key: "HOME", exact: true, component: Home },
   // {
   //   path: "/app",

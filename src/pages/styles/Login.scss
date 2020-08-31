@@ -1,0 +1,39 @@
+$card-radius: 5px;
+$card-height: 420px;
+
+.full-background {
+  background-image: url("../../img/recorder.jpg");
+  height: 100vh;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.left-card {
+  overflow: hidden;
+  border-top-left-radius: $card-radius;
+  border-bottom-left-radius: $card-radius;
+  height: $card-height;
+}
+
+.right-card {
+  overflow: hidden;
+  border-top-right-radius: $card-radius;
+  border-bottom-right-radius: $card-radius;
+  background: white;
+  height: $card-height;
+  padding: 20px;
+}
+
+.login-form {
+  max-width: 300px;
+}
+.login-form-forgot {
+  float: right;
+}
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+.login-form-button {
+  width: 100%;
+}

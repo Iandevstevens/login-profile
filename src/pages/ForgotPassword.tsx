@@ -1,10 +1,9 @@
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Row, Col, Typography } from "antd";
-import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Typography } from "antd";
+import { UserOutlined, MailOutlined } from "@ant-design/icons";
 import streetMusic from "../img/music_street.jpg";
 import "./styles/Login.scss";
-// import { ValidateErrorEntity } from "../../node_modules/rc-field-form/lib/interface";
 
 const { Title } = Typography;
 
@@ -30,47 +29,27 @@ const LoginForm = () => {
       initialValues={{ remember: true }}
       onFinish={onFinish}
     >
-      <Title>Sign in</Title>
+      <Title>Forgot Password</Title>
       <Form.Item
         name="email"
-        rules={[{ required: true, message: "Please input your Username!" }]}
+        rules={[{ required: true, message: "Please input your Email!" }]}
       >
         <Input
           prefix={<MailOutlined className="site-form-item-icon" />}
-          placeholder="Username"
+          placeholder="Email"
         />
       </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[{ required: true, message: "Please input your Password!" }]}
-      >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Item>
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Link className="login-form-forgot" to="/forgot-password">
-          Forgot password
-        </Link>
-      </Form.Item>
-
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
+          Send reset Password
         </Button>
-        Or <Link to="/register">register now!</Link>
+        Back to <Link to="/">sign in</Link>
       </Form.Item>
     </Form>
   );
 };
 
-const Login = () => {
+const ForgotPassword = () => {
   return (
     <div className="full-background">
       <div
@@ -90,4 +69,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

@@ -30,15 +30,21 @@ const LoginForm = () => {
       initialValues={{ remember: true }}
       onFinish={onFinish}
     >
-      <Title>Sign in</Title>
+      <Title>Register</Title>
       <Form.Item
         name="email"
-        rules={[{ required: true, message: "Please input your Username!" }]}
+        rules={[{ required: true, message: "Please input your email!" }]}
       >
         <Input
           prefix={<MailOutlined className="site-form-item-icon" />}
           placeholder="Username"
         />
+      </Form.Item>
+      <Form.Item
+        name="username"
+        rules={[{ required: true, message: "Please input your Username!" }]}
+      >
+        <Input prefix={<UserOutlined />} placeholder="Username" />
       </Form.Item>
       <Form.Item
         name="password"
@@ -50,27 +56,21 @@ const LoginForm = () => {
           placeholder="Password"
         />
       </Form.Item>
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Link className="login-form-forgot" to="/forgot-password">
-          Forgot password
-        </Link>
+      <Form.Item name="remember" valuePropName="checked" noStyle>
+        <Checkbox>Remember me</Checkbox>
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
           Log in
         </Button>
-        Or <Link to="/register">register now!</Link>
+        Or <Link to="/">sign in!</Link>
       </Form.Item>
     </Form>
   );
 };
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="full-background">
       <div
@@ -90,4 +90,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
