@@ -1,55 +1,79 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
-import { routeInterface } from "./interfaces";
-import Login from "./pages/Login";
-import ForgotPassword from "./pages/ForgotPassword";
-import Register from "./pages/Register";
+import Login from "./pages/auth/Login";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import Register from "./pages/auth/Register";
 import Home from "./pages/Home";
+import GroupRoom from "./pages/GroupRoom";
+import SpotifyCallback from "./pages/auth/SpotifyCallback";
+
+import { Route, Switch, Redirect } from "react-router-dom";
+import { routeInterface } from "./interfaces";
+import MusicRoom from "./pages/MusicRoom";
 
 interface IRenderRoutes {
   routes: routeInterface[];
 }
 
+const hasProfile = () => {
+  const profile = JSON.parse(
+    localStorage.getItem("persist:root") || '{"profile": "{}"}'
+  ).profile;
+  return profile !== "{}";
+};
+
 const ROUTES: routeInterface[] = [
-  { path: "/", key: "ROOT", exact: true, component: Login },
   {
-    path: "/forgot-password",
-    key: "FORGOT_PASSWORD",
-    exact: true,
-    component: ForgotPassword,
+    path: "/app",
+    key: "APP",
+    component: (props: IRenderRoutes) => {
+      if (!hasProfile()) return <Redirect to={"/"} />;
+      return <RenderRoutes {...props} />;
+    },
+    routes: [
+      { path: "/app/home", key: "HOME", exact: true, component: Home },
+      { path: "/app/room/:id", key: "ROOM", exact: true, component: GroupRoom },
+      {
+        path: "/app/music-room/:id",
+        key: "MUSIC_ROOM",
+        exact: true,
+        component: MusicRoom,
+      },
+    ],
   },
   {
-    path: "/register",
-    key: "REGISTER",
-    exact: true,
-    component: Register,
+    path: "/",
+    key: "AUTH",
+    component: (props: IRenderRoutes) => {
+      if (hasProfile()) return <Redirect to={"/app/home"} />;
+      return <RenderRoutes {...props} />;
+    },
+    routes: [
+      {
+        path: "/",
+        key: "AUTH_LOGIN",
+        exact: true,
+        component: Login,
+      },
+      {
+        path: "/forgot-password",
+        key: "AUTH_FORGOT_PASSWORD",
+        exact: true,
+        component: ForgotPassword,
+      },
+      {
+        path: "/register",
+        key: "AUTH_REGISTER",
+        exact: true,
+        component: Register,
+      },
+      {
+        path: "/spotify/callback",
+        key: "SPOTIFY_CALLBACK",
+        exact: true,
+        component: SpotifyCallback,
+      },
+    ],
   },
-  { path: "/home", key: "HOME", exact: true, component: Home },
-  // {
-  //   path: "/app",
-  //   key: "APP",
-  //   component: (props: IRenderRoutes) => {
-  //     if (!localStorage.getItem("user")) {
-  //       alert("You need to log in to access app routes");
-  //       return <Redirect to={"/"} />;
-  //     }
-  //     return <RenderRoutes {...props} />;
-  //   },
-  //   routes: [
-  //     {
-  //       path: "/app",
-  //       key: "APP_ROOT",
-  //       exact: true,
-  //       component: () => <h1>App Index</h1>,
-  //     },
-  //     {
-  //       path: "/app/page",
-  //       key: "APP_PAGE",
-  //       exact: true,
-  //       component: () => <h1>App Page</h1>,
-  //     },
-  //   ],
-  // },
 ];
 
 export default ROUTES;

@@ -2,8 +2,8 @@ import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Form, Input, Button, Typography } from "antd";
 import { UserOutlined, MailOutlined } from "@ant-design/icons";
-import streetMusic from "../img/music_street.jpg";
-import "./styles/Login.scss";
+import streetMusic from "../../img/music_street.jpg";
+import "../styles/Login.scss";
 
 const { Title } = Typography;
 
@@ -40,8 +40,13 @@ const LoginForm = () => {
         />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Send reset Password
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="login-form-button"
+          shape="round"
+        >
+          Reset Password
         </Button>
         Back to <Link to="/">sign in</Link>
       </Form.Item>

@@ -23,6 +23,7 @@ $card-height: 420px;
   background: white;
   height: $card-height;
   padding: 20px;
+  width: 320px;
 }
 
 .login-form {
@@ -35,5 +36,31 @@ $card-height: 420px;
   float: left;
 }
 .login-form-button {
-  width: 100%;
+  width: 120px;
+}
+
+.toggle-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  .left-button {
+    padding: 0px 10px;
+    background-color: blue;
+    color: white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .right-button {
+    padding: 0px 10px;
+    background-color: red;
+    color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
 }
